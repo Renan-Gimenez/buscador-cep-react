@@ -6,9 +6,14 @@ import api from './services/api';
 
 export default function App() {
 
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState('');
   const [cep, setCep] = useState({});
+  const form = document.querySelector('.containerInput');
 
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+  })
+  
   async function handleSearch(){
     if (input === '') {
       alert("Preencha algum CEP")
@@ -32,7 +37,7 @@ export default function App() {
     <div className="container">
       <h1 className="title">Buscador CEP</h1>
 
-      <div className="containerInput">
+      <form className="containerInput">
         <input type="text" placeholder="Digite o CPF"
         value={input}
         onChange={(e) => setInput(e.target.value) }
@@ -41,7 +46,7 @@ export default function App() {
         <button className="buttonSearch" onClick={handleSearch}>
           <FiSearch size={25} color="#fff"/>
         </button>
-      </div>
+      </form>
 
       {/* {Object.key(cep.erro) == false && ( */}
       {Object.keys(cep).length > 0 && (
